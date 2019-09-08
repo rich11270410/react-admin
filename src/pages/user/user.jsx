@@ -22,7 +22,8 @@ export default class User extends Component {
     roles: [], //所有角色的列表
     isShow: false //是否显示对话框
   }
-
+  
+  //初始化Table的字段列表
   initColumns = () => {
     this.columns = [
       {
@@ -141,6 +142,7 @@ export default class User extends Component {
     this.initColumns()
   }
 
+    //异步请求
   componentDidMount () {
     //获取数据更新显示
     this.getUsers()

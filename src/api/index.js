@@ -43,7 +43,7 @@ export const reqAddCategory = (categoryName) => ajax({
 })
 
 //更新分类
-export const reqUpdateCategory = (categoryId, categoryName) => ajax({
+export const reqUpdateCategory = ({categoryId, categoryName}) => ajax({
   url: '/manage/category/update',
   method: 'POST',
   data: {categoryId, categoryName}
