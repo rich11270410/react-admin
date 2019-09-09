@@ -6,6 +6,7 @@ import {
   Modal,
   message
 } from 'antd'
+import {connect} from 'react-redux'
 
 import AddForm from './add-form'
 import AuthForm  from './auth-form'
@@ -18,7 +19,7 @@ import memoryUtils from '../../utils/memoryUtils'
 /**
  * 角色管理
  */
-export default class Role extends Component {
+ class Role extends Component {
   state = {
     roles: [], //所有角色的列表
     isShowAdd: false, //是否显示添加界面
@@ -118,7 +119,7 @@ export default class Role extends Component {
     const role = this.role
     role.menus = this.authRef.current.getMenus()
     role.auth_time = Date.now()
-    role.auth_name = memoryUtils.user.username 
+    role.auth_name = this.props.user.username 
     //发送请求
     const result = await reqUpdateRole(role)
     if (result.status === 0) {
@@ -188,3 +189,10 @@ export default class Role extends Component {
     )
   }
 }
+
+export default connect (
+  state => ({
+    user: state.user
+  }),
+  {}
+)(Role)

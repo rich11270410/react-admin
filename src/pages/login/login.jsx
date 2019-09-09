@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import {Button, Form, Icon, Input, message} from 'antd'
+import {connect} from 'react-redux'
 
+import {login} from '../../redux/actions'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
+
 import { reqLogin } from '../../api'
 import logo from '../../assets/images/logo.png'
 import './login.less'
@@ -33,22 +36,7 @@ class Login extends Component {
       values 表单输入的值
     */
       if (!error) { //验证通过
-        //发送登录的ajax
-        const result = await reqLogin(username,password)
-        if (result.status === 0) { //请求登录成功
-          //得到返回的用户信息对象
-          const user = result.data
-          
-          //保存user(local) 
-          //JSON.stringify()这个方法，来将JSON转换成为JSON字符串
-          storageUtils.saveUser(user)
-          memoryUtils.user = user
-
-          //跳转到admin路由
-          this.props.history.replace('/')
-        } else {////请求登录失败
-          message.error(result.msg)
-        }
+        this.props.login({ username, password })
         
       } else {
         console.log('前台表单验证失败')
@@ -74,7 +62,7 @@ class Login extends Component {
 
   render() {
     //读取之后要将JSON字符串转换成为JSON对象，使用JSON.parse()方法
-    const user = memoryUtils.user
+    const user = this.props.user
 
     //如果登录
     if (user._id) {
@@ -91,6 +79,7 @@ class Login extends Component {
           <h1>后台管理系统</h1>
         </div>
         <div className="login-content">
+          {user.msg ? <div style={{color: 'gray'}}>{user.msg}</div> : null}
           <h1>用户登陆</h1>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Item>
@@ -151,7 +140,12 @@ class Login extends Component {
 }
 
 const WrappedLogin = Form.create()(Login)
-export default WrappedLogin
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  {login}
+)(WrappedLogin)
 
 /*
 高阶组件用法：接收一个Login组件，返回一个新组件，就多了些form属性

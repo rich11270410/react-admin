@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Switch, Route } from 'react-router-dom'
 import {Layout} from 'antd'
+import {connect} from 'react-redux'
 
 import memoryUtils from '../../utils/memoryUtils'
 import LeftNav from '../../components/left-nav'
@@ -16,11 +17,11 @@ import Pie from '../charts/pie'
 
 const { Footer, Sider, Content } = Layout
 //一级路由：管理
-export default class Admin extends Component {
+class Admin extends Component {
   render() {
 
     //读取之后要将JSON字符串转换成为JSON对象，使用JSON.parse()方法
-    const user = memoryUtils.user
+    const user = this.props.user
 
     //如果没有登录, user没有_id
     if (!user._id) {
@@ -54,3 +55,10 @@ export default class Admin extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  {}
+)(Admin)
