@@ -3,7 +3,7 @@ import { Redirect, Switch, Route } from 'react-router-dom'
 import {Layout} from 'antd'
 import {connect} from 'react-redux'
 
-import memoryUtils from '../../utils/memoryUtils'
+// import memoryUtils from '../../utils/memoryUtils'
 import LeftNav from '../../components/left-nav'
 import Header from '../../components/header'
 import Home from '../home/home'

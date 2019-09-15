@@ -8,9 +8,9 @@ import LinkButton from '../link-button'
 import {reqWeather} from '../../api'
 import {formateDate} from '../../utils/dateUtils'
 import menuConfig from '../../config/menuConfig'
-import memoryUtils from '../../utils/memoryUtils'
+// import memoryUtils from '../../utils/memoryUtils'
 import './index.less'
-import storageUtils from '../../utils/storageUtils'
+// import storageUtils from '../../utils/storageUtils'
 
 /*
 Admin的右侧头部组件

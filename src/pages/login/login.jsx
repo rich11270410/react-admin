@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import {Button, Form, Icon, Input, message} from 'antd'
+import {Button, Form, Icon, Input} from 'antd'
 import {connect} from 'react-redux'
 
 import {login} from '../../redux/actions'
-import memoryUtils from '../../utils/memoryUtils'
-import storageUtils from '../../utils/storageUtils'
+// import memoryUtils from '../../utils/memoryUtils'
+// import storageUtils from '../../utils/storageUtils'
 
-import { reqLogin } from '../../api'
+// import { reqLogin } from '../../api'
 import logo from '../../assets/images/logo.png'
 import './login.less'
 

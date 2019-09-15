@@ -4,7 +4,7 @@ import { Menu, Icon} from 'antd'
 import {connect} from 'react-redux'
 
 import {setHeaderTitle} from '../../redux/actions'
-import memoryUtils from '../../utils/memoryUtils'
+// import memoryUtils from '../../utils/memoryUtils'
 import menuList from '../../config/menuConfig'
 import logo from '../../assets/images/logo.png'
 import './index.less'
@@ -26,10 +26,10 @@ class LeftNav extends Component {
     3. item的key在menus中
     4. 如果和一个cItem的key在menus中
     */
-    if (user.username === 'admin' || item.isPublic || menus.indexOf(item.key) != -1) {
+    if (user.username === 'admin' || item.isPublic || menus.indexOf(item.key) !== -1) {
       return true
     } else if (item.children) {
-      return item.children.some(cItem => menus.indexOf(cItem.key) != -1)
+      return item.children.some(cItem => menus.indexOf(cItem.key) !== -1)
     }
     return false
   }
