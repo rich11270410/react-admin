@@ -7,7 +7,7 @@ import {message} from 'antd'
   1. 统一处理请求异常
   2. 异步请求成功的数据不是response, 而是response.data
 */
-
+// axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? '/react_api' : ''
 //使用请求拦截器
 axios.interceptors.request.use((config) => {
   //将post请求参数转换为urlencoded(默认json格式)  ===> 使用请求拦截器
